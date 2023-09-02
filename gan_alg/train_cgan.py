@@ -1,5 +1,5 @@
 from models.cgan import Generator, Discriminator
-from gan_alg.show import show_cgan_result
+from gan_alg.utils import show_cgan_result
 
 from torchvision import datasets, transforms
 import torch.optim as optim

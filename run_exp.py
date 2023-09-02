@@ -1,9 +1,8 @@
 from gan_alg.train_cgan import TrainConditionalGAN
-from gan_alg.steal_cgan import StealConditionalGAN
+from gan_alg.steal_cgan_setting2 import StealConditionalGAN
 import argparse
 import torch
-
-from gan_alg.show import show_cgan_result
+import gan_alg.utils as utils
 
 
 def get_args():
@@ -28,7 +27,7 @@ def get_steal_args():
     args.add_argument('--z_dim', type=int, default=128)
     args.add_argument('--lr', type=float, default=0.0002)
 
-    args.add_argument('--n_epoch', type=int, default=20)
+    args.add_argument('--n_epoch', type=int, default=10)
     args.add_argument('--n_batch', type=int, default=40)
     args.add_argument('--s_type', type=str, default='Prob', help='Prob or Imgs, for Bayes target')
 
@@ -46,5 +45,8 @@ if __name__ == '__main__':
     args = get_steal_args()
     s = StealConditionalGAN(args)
     s.steal()
+    avg_model = s.model_avg()
 
-
+    # FID calculation over FashionMNIST at root 'data'
+    fid_score = utils.calculate_fid_score(avg_model, args)
+    print(f"FID Score: {fid_score:.2f}")
