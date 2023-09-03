@@ -1,5 +1,5 @@
 from gan_alg.train_cgan import TrainConditionalGAN
-from gan_alg.steal_cgan_setting2 import StealConditionalGAN
+from gan_alg.steal_cgan_setting3 import StealConditionalGAN
 import argparse
 import torch
 import gan_alg.utils as utils
@@ -44,9 +44,13 @@ if __name__ == '__main__':
 
     args = get_steal_args()
     s = StealConditionalGAN(args)
-    s.steal()
-    avg_model = s.model_avg()
+    # s.steal()
+
+    s.federated_steal()
+
+    # Second setting:
+    # avg_model = s.model_avg()
 
     # FID calculation over FashionMNIST at root 'data'
-    fid_score = utils.calculate_fid_score(avg_model, args)
-    print(f"FID Score: {fid_score:.2f}")
+    # fid_score = utils.calculate_fid_score(avg_model, args)
+    # print(f"FID Score: {fid_score:.2f}")

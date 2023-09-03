@@ -47,7 +47,7 @@ def show_cgan_result(G, num_epoch, args, show = False, save = False, path = 'res
 
     G.eval()
 
-    test_images, mid2, mid3 = G(fixed_z_, fixed_y_label_, num_epoch)
+    test_images, mid2, mid3 = G(fixed_z_, fixed_y_label_)
 
     size_figure_grid = 10
     fig, ax = plt.subplots(size_figure_grid, size_figure_grid, figsize=(5, 5))
