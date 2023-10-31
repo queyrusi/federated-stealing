@@ -1,1 +1,1 @@
-# federated-steal
+# federated-stealing
