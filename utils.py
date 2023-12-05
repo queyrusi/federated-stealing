@@ -1,7 +1,6 @@
 import torch
 import os
 import pickle
-import numpy as np
 import itertools
 from torch import nn
 from tqdm import tqdm
