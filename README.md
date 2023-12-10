@@ -1,1 +1,1 @@
-# federated-stealing
+# clue-stealing
