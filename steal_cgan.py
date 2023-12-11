@@ -167,7 +167,6 @@ class ClueStealing():
 
         # Initialize the global thief
         GT = Generator(nc=self.args.nc, ngf=self.args.ngf, nz=self.args.nz).to(device)
-        wandb.watch(GT, log="all", log_freq=10) 
 
         # Declare thieves
         self.thieves = [copy.deepcopy(GT) for i in range(self.args.n_thieves)]
