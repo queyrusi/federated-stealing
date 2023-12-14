@@ -200,11 +200,10 @@ def get_real_images_dataloader_for_FID(batch_size):
 
 
 # Generate noise
-def get_noise_dataloader(num_batches, batch_size, nz=100):
+def get_noise_dataloader(num_batches, batch_size, noise_file="noise_tensor.pth",
+                         labels_file="labels_tensor.pth", nz=100, delete_after=True):
     """Dataloader of the noise/label sent to query the victim. 
     """
-    noise_file = "noise_tensor.pth"
-    labels_file = "labels_tensor.pth"
 
     if not os.path.isfile(noise_file) or not os.path.isfile(labels_file):
         generate_and_save_noise(num_batches, batch_size, noise_file, labels_file, nz=nz)
@@ -213,7 +212,8 @@ def get_noise_dataloader(num_batches, batch_size, nz=100):
                                     labels_file, 
                                     num_queries=int(num_batches * batch_size))
     dataloader = DataLoader(custom_dataset, batch_size=batch_size, shuffle=False)
-    delete_helper_tensor_files([noise_file])
+    if delete_after: 
+        delete_helper_tensor_files([noise_file])
 
     return dataloader
 

@@ -52,6 +52,8 @@ class ClueStealing():
             self.args.batch_size = R
 
         self.noise_dl = utils.get_noise_dataloader(self.args.n_thieves * Q, self.args.batch_size,
+                                                   noise_file="noise_tensor.pth",
+                                                   labels_file="labels_tensor.pth",
                                                    nz=self.args.nz)
         self.queries_dl = utils.get_queries_dataloader(self.noise_dl, dataset=self.args.dataset,
                                                        nz=self.args.nz)
