@@ -223,6 +223,8 @@ def steal():
                 response = requests.post(f'http://localhost:500{worker_id}/receive_model',
                                          data=model_payload)
 
+                # We keep 500N as a convention to prevent an additional handshake
+
 
 # Once workers receive the model, they answer by sending new gradients on this endpoint
 @app.route('/gradients', methods=['POST'])
