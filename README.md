@@ -51,3 +51,19 @@ By design, workers and victim apps are to be started before the central server:
     # On server's side
     python central_server.py --port=5004 --Na=3
 ```
+
+## Victim model $G^T$ training parameters
+
+$G^T$ and $D^T$ were trained on public train splits of CelebA (condition on Male, Female, Black hair and non Black hair)
+
+| Param                                   | Value                        |
+|-----------------------------------------|------------------------------|
+| Num. epochs                             | 20                           |
+| Batch size                              | 128                          |
+| Loss                                    | BCE                          |
+| $n_z$ (latent space dim.)               | 100                          |
+| Filters                                 | 16                           |
+| Learning rate                           | 0.0002                       |
+| Optimizer                               | Adam                         |
+| $\beta_1, \beta_2$                      | 0.5,0.999                    |
+| $p_z, p_y$                              | uniform                      |
